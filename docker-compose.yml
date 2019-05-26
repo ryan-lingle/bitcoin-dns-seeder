@@ -1,0 +1,34 @@
+version: '2'
+services:
+  crawler:
+    container_name: crawler
+    depends_on:
+      - mysql
+    build: ./crawler
+  dns:
+    container_name: dns
+    depends_on:
+      - mysql
+    build: ./dns
+    ports:
+      - 5053:53/tcp
+      - 5053:53/udp
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test_pass'
+      MYSQL_PASSWORD: 'test_pass'
+      MYSQL_USER: 'user'
+      MYSQL_DATABASE: 'db'
+
+    volumes:
+      - data-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+volumes:
+  data-volume:
+
