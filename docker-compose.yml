@@ -1,7 +1,7 @@
 version: '2'
 services:
   crawler:
-    container_name: crawler
+    container_name: crawl
     depends_on:
       - mysql
     build: ./crawler
@@ -11,8 +11,8 @@ services:
       - mysql
     build: ./dns
     ports:
-      - 5053:53/tcp
-      - 5053:53/udp
+      - 53:53/tcp
+      - 53:53/udp
   mysql:
     container_name: mysql
     restart: always
