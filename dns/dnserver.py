@@ -62,7 +62,7 @@ class Resolver():
             return reply
 
         print('no local zone found, proxying %s[%s]', request.q.qname, type_name)
-
+        return reply
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 53))
